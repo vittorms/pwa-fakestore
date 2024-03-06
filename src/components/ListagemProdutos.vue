@@ -12,6 +12,7 @@ onMounted(async () => {
 });
 
 const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`;
+
 </script>
 
 <template>
@@ -22,9 +23,9 @@ const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`;
       <span v-if="isMobile">É móvel</span>
     </h1>
     <div class="container">
-      <div class="card" v-for="produto in produtos" :key="produto.id">
-        <h1 class="card--title">{{ produto.title }}</h1>
-        <p>{{ produto.description }}</p>
+      <div class="card" v-for="produto in produtos" :key="produto.id" :class="isMobile ? 'card-mobile' : 'card'">
+        <h1 class="card--title" >{{ produto.title }}</h1>
+        <!-- <p>{{ produto.description }}</p> -->
         <p>{{ formatPrice(produto.price) }}</p>
         <img class="card--avatar" :src="produto.image" :alt="produto.title" />
       </div>
@@ -54,6 +55,10 @@ const formatPrice = (price) => `R$ ${price.toFixed(2).replace('.', ',')}`;
   border-radius: 10px;
   margin: auto;
   overflow: hidden;
+}
+.card-mobile{
+  color: aquamarine;
+  
 }
 .card--avatar {
   width: 100%;
